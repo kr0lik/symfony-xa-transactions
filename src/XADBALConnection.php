@@ -35,10 +35,10 @@ class XADBALConnection extends Connection
             $this->finishGlobalTransactions();
             $this->beginXATransaction();
 
-            return;
+            return true;
         }
 
-        parent::beginTransaction();
+        return parent::beginTransaction();
     }
 
     /**
@@ -51,10 +51,10 @@ class XADBALConnection extends Connection
             $this->prepareXaTransaction();
             $this->reConnect();
 
-            return;
+            return true;
         }
 
-        parent::commit();
+        return parent::commit();
     }
 
     /**
